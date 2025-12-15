@@ -42,14 +42,14 @@ jobs:
           docker push $IMAGE_URI:latest
       - name: Render ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v2
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
         with: 
           task-definition: ecs-task-def.json
           container-name: backend
           image: ${{secrets.ECR_REPOSITORY_URI}}:latest
           
       - name: Deploy to AWS ECS
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           cluster: ${{secrets.ECS_CLUSTER}}
           service: ${{secrets.ECS_SERVICE}}
